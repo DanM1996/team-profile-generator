@@ -1,4 +1,3 @@
-const { expect, test } = require('@jest/globals');
 const Engineer = require('../lib/Engineer');
 
 test('Creates Engineer object', () => {
@@ -17,5 +16,5 @@ test('gets github', () => {
     const engineer = new Engineer('Dan', 7, "bmdmartinez@gmail.com", "DanM1996");
 
     expect(engineer.getGithub()).toEqual(expect.stringContaining(engineer.github.toString()))
-})
+});
 
