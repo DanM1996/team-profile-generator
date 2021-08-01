@@ -55,7 +55,8 @@ const generateEngineer = function(engineer) {
     `;  
 };
 
-createList = (data) => {
+generateWebsite = (data) => {
+
     employeeArray = [];
 
     for (let i = 0; i < employeeArray.length; i++) {

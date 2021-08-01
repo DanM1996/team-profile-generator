@@ -140,6 +140,7 @@ const writeFile = data => {
             console.log('looking clean!');
         }
     })
+    console.log(employees);
 };
 
 addUser()
