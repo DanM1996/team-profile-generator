@@ -5,12 +5,13 @@ const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 
-const createList = require('./src/page-template');
+const generateWebsite = require('./src/page-template');
 
 const employees = [];
 
 const addUser = () => {
-    return inquirer.prompt({
+    return inquirer.prompt([
+        {
         type: 'input',
         name: 'name',
         message: 'What is your name?',
@@ -99,7 +100,8 @@ const addUser = () => {
         name: 'addEmployee',
         message: 'Would you like to add another employee?',
         default: false,
-    })
+    }
+])
     .then(workerInfo => {
         
         let { name, role, id, email, officeNumber, github, school, addEmployee } = workerInfo;
@@ -130,17 +132,23 @@ const addUser = () => {
 
 const writeFile = data => {
     fs.writeFile('./dist/index.html', data, err => {
-        if (err) throw err;
+        if (err) {
+            console.log(err)
+            return
+        }
+        else {
+            console.log('looking clean!');
+        }
     })
 };
 
 addUser()
 .then(employees => {
-    return createList(employees);
+    return generateWebsite(employees);
 })
 .then(pageHTML => {
     return writeFile(pageHTML);
 })
 .catch(err => {
     console.log(err);
-})
+});

@@ -111,4 +111,4 @@ const createPage = function(listItems) {
     `
 }
 
-module.exports = createList;
+module.exports = generateWebsite;
