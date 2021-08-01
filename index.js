@@ -85,7 +85,7 @@ const addUser = () => {
     {
         type: 'input',
         name: 'school',
-        message: 'What school do you currently attend? (Interns only, other roles may enter N/A',
+        message: 'What school do you currently attend? (Interns only, other roles may enter N/A)',
         validate: school => {
             if (school) {
                 return true;
@@ -145,9 +145,12 @@ const writeFile = data => {
 
 addUser()
 .then(employees => {
+    console.log(employees);
     return generateWebsite(employees);
+
 })
 .then(pageHTML => {
+    console.log(pageHTML);
     return writeFile(pageHTML);
 })
 .catch(err => {

@@ -1,3 +1,4 @@
+
 const generateIntern = function (intern) {
     return `
     <div class="col-4 mt-4">
@@ -48,7 +49,7 @@ const generateEngineer = function(engineer) {
                         <div class="card-body">
                             <p class="id">ID: ${engineer.id}</p>
                             <p class="email">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
-                            <p class="github">Github: <a href="https://github.com/${engineer.hithub}">${engineer.hithub}</a></p>
+                            <p class="github">Github: <a href="https://github.com/${engineer.github}">${engineer.github}</a></p>
                         </div>
                     </div>
                 </div>
@@ -56,33 +57,33 @@ const generateEngineer = function(engineer) {
 };
 
 generateWebsite = (data) => {
-
+    console.log(data);
     employeeArray = [];
 
-    for (let i = 0; i < employeeArray.length; i++) {
+    for (let i = 0; i < data.length; i++) {
         const worker = data[i];
-        const role = getRole();
+        const role = worker.getRole();
 
-        if(role === engineer){
-            let engineerInfo = generateEngineer(worker);
+        if(role === 'Engineer'){
+            const engineerInfo = generateEngineer(worker);
             employeeArray.push(engineerInfo);
         }
-        if (role === intern) {
-            let internInfo = generateIntern(worker);
+        if (role === 'Intern') {
+            const internInfo = generateIntern(worker);
             employeeArray.push(internInfo);
         }
-        if (role === manager) {
-            let managerInfo = generateManager(worker);
+        if (role === 'Manager') {
+            const managerInfo = generateManager(worker);
             employeeArray.push(managerInfo);
         };
     }
-    const listItems = employeeArray.join('');
+    const employeeInfo = employeeArray.join('');
     
-    const generateWorkers = createPage(listItems);
+    const generateWorkers = createPage(employeeInfo);
     return generateWorkers;
 }
 
-const createPage = function(listItems) {
+const createPage = function(employeeInfo) {
     return `
     <!DOCTYPE html>
 <html lang="en">
@@ -102,7 +103,7 @@ const createPage = function(listItems) {
     <main>
         <div class="container">
         <div class="row justify-content-center" id="team-cards">
-        ${listItems}
+        ${employeeInfo}
         </div>
         </div> 
     </main>
