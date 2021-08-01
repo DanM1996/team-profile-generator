@@ -5,7 +5,7 @@ const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 
-const pageTemplate = require('./src/page-template');
+const createList = require('./src/page-template');
 
 const employees = [];
 
@@ -128,4 +128,19 @@ const addUser = () => {
     })
 };
 
+const writeFile = data => {
+    fs.writeFile('./dist/index.html', data, err => {
+        if (err) throw err;
+    })
+};
 
+addUser()
+.then(employees => {
+    return createList(employees);
+})
+.then(pageHTML => {
+    return writeFile(pageHTML);
+})
+.catch(err => {
+    console.log(err);
+})

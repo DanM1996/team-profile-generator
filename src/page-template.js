@@ -75,11 +75,11 @@ createList = (data) => {
             employeeArray.push(managerInfo);
         };
     }
-    const listItems = pageArray.join('');
+    const listItems = employeeArray.join('');
     
     const generateWorkers = createPage(listItems);
     return generateWorkers;
-};
+}
 
 const createPage = function(listItems) {
     return `
@@ -111,4 +111,4 @@ const createPage = function(listItems) {
     `
 }
 
-module.exports = pageTemplate;
+module.exports = createList;
